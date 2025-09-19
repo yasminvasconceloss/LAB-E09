@@ -1,0 +1,16 @@
+
+int main(void) {
+    // Configurando PD2 como entrada
+    DDRD &= ~(1<<PD2);
+
+    // Configurando PD3 como saída (LED)
+    DDRD |= (1<<PD3);
+
+    while (1) {
+        // Verificando se o pino PD2 está setado (nível lógico alto)
+        if (PIND & (1<<PD2)) {
+            // Acendendo LED no PD3 com operação OR
+            PORTD |= (1<<PD3);
+        }
+    }
+}

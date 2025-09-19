@@ -1,0 +1,13 @@
+int main(void) {
+    // Configurando PD3 e PB4 como saída
+    DDRD |= (1 << PD3);
+    DDRB |= (1 << PB4);
+
+    while (1) {
+        // Alternando os estados dos dois pinos
+        PORTD ^= (1 << PD3);
+        PORTB ^= (1 << PB4);
+    }
+
+    return 0;
+}

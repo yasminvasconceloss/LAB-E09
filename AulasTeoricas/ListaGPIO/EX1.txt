@@ -1,0 +1,9 @@
+int main(void) {
+    // Configurando PD2 como saída
+    DDRD |= (1 << PD2);
+
+    // Acendendo o PD2 (nível lógico alto)
+    PORTD |= (1 << PD2);
+
+    return 0;
+}

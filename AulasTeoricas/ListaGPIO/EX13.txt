@@ -1,0 +1,34 @@
+
+int main(void) {
+    // Configurando PB0..PB4 como entradas
+    DDRB &= ~((1<<PB0)|(1<<PB1)|(1<<PB2)|(1<<PB3)|(1<<PB4));
+
+    // Configurando PD0 como saída (LED1)
+    DDRD |= (1<<PD0);
+
+    // Configurando PC0 como saída (LED2)
+    DDRC |= (1<<PC0);
+
+    while (1) {
+        // Lendo os 5 bits de entrada em PORTB
+        uint8_t entradas = PINB & 0x1F; 
+
+        // Caso todos sejam 0 ou todos sejam 1
+        if (entradas == 0x00 || entradas == 0x1F) {
+            // Acendendo LED2
+            PORTC |= (1<<PC0);
+            PORTD &= ~(1<<PD0);
+        } 
+        // Caso padrão intercalado (ex: 10101 ou 01010)
+        else if (entradas == 0x15 || entradas == 0x0A) {
+            // Acendendo LED1
+            PORTD |= (1<<PD0);
+            PORTC &= ~(1<<PC0);
+        } 
+        else {
+            // Apagando ambos
+            PORTD &= ~(1<<PD0);
+            PORTC &= ~(1<<PC0);
+        }
+    }
+}

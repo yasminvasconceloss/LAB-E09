@@ -1,0 +1,15 @@
+int main(void) {
+    // Configurando PD2 como entrada
+    DDRD &= ~(1<<PD2);
+
+    // Configurando PD3 como saída (LED)
+    DDRD |= (1<<PD3);
+
+    while (1) {
+        // Verificando se PD2 está setado
+        if (PIND & (1<<PD2)) {
+            // Apagando LED em PD3 usando AND com NOT
+            PORTD &= ~(1<<PD3);
+        }
+    }
+}

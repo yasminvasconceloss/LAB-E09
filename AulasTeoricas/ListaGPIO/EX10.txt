@@ -1,0 +1,13 @@
+int main(void) {
+    // Configurando pinos PD0, PD1 e PD2 como entradas
+    DDRD &= ~( (1<<PD0) | (1<<PD1) | (1<<PD2) );
+
+    // Verificando se todos os pinos foram configurados como entrada
+    if ((DDRD & ((1<<PD0) | (1<<PD1) | (1<<PD2))) == 0) {
+        // Colocando aqui alguma ação caso estejam realmente como entradas
+    }
+
+    while (1) {
+        // Mantendo em loop infinito
+    }
+}

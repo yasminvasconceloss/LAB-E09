@@ -1,0 +1,22 @@
+
+int main(void) {
+    // Configura PD5 como saída agora (para poder inverter no PORTD)
+    DDRD |= (1 << PD5);
+
+    // Ativa primeiro o bit PD5
+    PORTD |= (1 << PD5);
+
+    while (1) {
+        // Inverte o estado de PD5 apagando o bit (se estava 1, vira 0)
+        PORTD &= ~(1 << PD5);
+
+        _delay_ms(500); // delay para observar mudança
+
+        // Recolocando o bit PD5 em 1 para repetir o ciclo
+        PORTD |= (1 << PD5);
+
+        _delay_ms(500);
+    }
+
+    return 0;
+}

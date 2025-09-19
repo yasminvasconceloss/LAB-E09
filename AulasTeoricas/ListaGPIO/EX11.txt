@@ -1,0 +1,25 @@
+int main(void) {
+    // Configurando PD0 como entrada (botão)
+    DDRD &= ~(1<<PD0);
+
+    // Configurando PD1 como saída (LED)
+    DDRD |= (1<<PD1);
+
+    // Iniciando variável para controlar o estado do LED
+    uint8_t estado_led = 0;
+
+    while (1) {
+        // Verificando se o botão em PD0 está pressionado
+        if (PIND & (1<<PD0)) {
+            // Alternando estado do LED
+            estado_led ^= 1;
+            if (estado_led)
+                PORTD |= (1<<PD1);
+            else
+                PORTD &= ~(1<<PD1);
+
+            // Esperando soltar o botão antes de continuar
+            while (PIND & (1<<PD0));
+        }
+    }
+}
